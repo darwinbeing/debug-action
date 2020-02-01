@@ -1,0 +1,31 @@
+name: CreateRelease
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup
+      id: GetVersion
+      run: |
+        VT_VERSION=2.02
+        echo ::set-output name=VERSION::${VT_VERSION}
+
+    - name: CreateRelease
+      env:
+        GITHUB_TOKEN: ${{ secrets.VT_CR_TOKEN }}
+      uses: darwinbeing/create-release@master
+      with:
+        tag_name: ${{ steps.GetVersion.outputs.VERSION }}
+        release_name: Release ${{ steps.GetVersion.outputs.VERSION }}
+        body: ${{ github.event.head_commit.message }}
+        draft: false
+        prerelease: false
+
+
+
