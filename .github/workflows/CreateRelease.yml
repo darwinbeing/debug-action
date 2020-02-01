@@ -18,7 +18,7 @@ jobs:
 
     - name: CreateRelease
       env:
-        GITHUB_TOKEN: ${{ secrets.VT_CR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       uses: darwinbeing/create-release@master
       with:
         tag_name: ${{ steps.GetVersion.outputs.VERSION }}
