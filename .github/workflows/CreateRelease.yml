@@ -18,7 +18,7 @@ jobs:
       run: |
         VT_VERSION=2.02
         echo ::set-output name=VERSION::${VT_VERSION}
-
+        
     - name: CreateRelease
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
